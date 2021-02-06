@@ -1,18 +1,12 @@
 import React from 'react';
 import './App.css';
 import Timer from "./components/Timer";
+import { useState } from 'react';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isShowing: false,
-      delay: ''
-    }
-  }
+export default function App() {
+    const [isShowing, setIsShowing] = useState(false);
+    const [delay, setDelay] = useState('');
 
-  render() {
-    const { isShowing, delay } = this.state;
     return (
       <div className="wrapper">
         <div>
@@ -23,21 +17,18 @@ class App extends React.Component {
           <input
               type="text"
               value={delay}
-              onChange={e => this.setState({ delay: e.target.value })} />
+              onChange={e => setDelay( e.target.value )} />
         </div>
         <div>
           Показать таймер:
           <input
               type="checkbox"
               value={isShowing}
-              onChange={e => this.setState({ isShowing: e.target.checked })} />
+              onChange={e => setIsShowing( e.target.checked )} />
         </div>
         <div>
           {isShowing && <Timer delay={delay} />}
         </div>
       </div>
     );
-  }
 }
-
-export default App;
