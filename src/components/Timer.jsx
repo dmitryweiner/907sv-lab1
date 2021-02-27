@@ -12,6 +12,8 @@ export default function Timer(props) {
             clearInterval(interval);
         }
         return () => clearInterval(interval);
-    });
+    }, []);
         return <span>{remainingTime}</span>;
     }
+
+/* https://ru.reactjs.org/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects */
