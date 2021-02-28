@@ -25,7 +25,7 @@ export default function App(props) {
           value={isShowing}
           onChange={(e) => setIsShowing(e.target.checked)}
         />
-        <label for="_checkbox">
+        <label htmlFor ="_checkbox">
           <div id="tick_mark"></div>
         </label>
       </div>
