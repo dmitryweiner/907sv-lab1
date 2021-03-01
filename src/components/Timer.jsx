@@ -1,30 +1,24 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 
-export default class Timer extends React.Component {
-    constructor(props) {
-        super(props);
+export default function Timer( {delay} ) {
+    const [remainingTime, setRemainingTime] = useState(delay);
 
-        this.state = {
-            remainingTime: props.delay
-        };
-
-        this.timerId = null;
-    }
-
-    componentDidMount() {
-        this.timerId = setInterval(() => {
-            if (this.state.remainingTime) {
-                this.setState({ remainingTime: this.state.remainingTime - 1 });
-            }
+    useEffect(() => {
+        const timerId = setInterval(() => {
+            setRemainingTime(remainingTime => {
+                if (remainingTime) {
+                    return remainingTime - 1;
+                } else {
+                    clearInterval(timerId);
+                }
+            });
         }, 1000);
-    }
 
-    componentWillUnmount() {
-        clearInterval(this.timerId);
-    }
+        return() => {
+            clearInterval(timerId);
+        }
+    },[]);
 
-    render() {
-        const { remainingTime } = this.state;
-        return <span>{remainingTime}</span>;
-    }
+    return <span>{remainingTime}</span>;
 }
