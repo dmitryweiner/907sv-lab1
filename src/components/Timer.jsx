@@ -4,11 +4,15 @@ export default function Timer({ delay }) {
   const [remainingTime, setRemainingTime] = useState(delay);
 
   useEffect(() => {
+    let time = remainingTime;
     let timerId = 0;
 
     if (remainingTime) {
       timerId = setInterval(() => {
-        setRemainingTime((remainingTime) => remainingTime - 1);
+        if (time > 0){
+          time --;
+          setRemainingTime(time)
+        }
       }, 1000);
     }
     return () => {
