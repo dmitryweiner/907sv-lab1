@@ -11,7 +11,7 @@ export default function Timer({delay}) {
             }
         }, 1000)
         return ()=> clearInterval(timerId)
-    })
+    }, [])
 
     return (
         <div>
