@@ -1,22 +1,19 @@
 import React from 'react';
 
-function Timer({delay}) {
-    const [counter, setCounter] = React.useState({delay})
+function Timer({ delay }) {
+    const [counter, setCounter] = React.useState(delay);
     React.useEffect(() => {
-        let innerTime = counter;
         const timerId = setInterval(() => {
-            setCounter(() => {
+            setCounter(innerTime => {
                 if (innerTime > 0) {
-                    innerTime -= 1;
+                    innerTime--;
                 }
                 return innerTime;
             });
         },1000)
-        if (innerTime===0) {
-            return () => clearInterval(timerId);
-        }
+        return () => clearInterval(timerId);
     },[]);
-    return ({counter});
+    return counter
 }
 
 export default Timer;

@@ -4,7 +4,7 @@ import Timer from "./components/Timer";
 
 function App(){
     const[isShowing, setIsShowing] = React.useState(false);
-    const[delay, setDelay] = React.useEffect('');
+    const[delay, setDelay] = React.useState('');
 
     return (
         <div className="wrapper">
