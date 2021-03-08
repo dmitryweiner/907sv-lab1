@@ -9,7 +9,7 @@ function App(props) {
     return(
         <div className={"wrapper"}>
             <div>
-                <h1>Лабораторная №1. Функциональные компоненты</h1>
+                <h1>Лабораторная №1. Функциональные компоненты.</h1>
                 <input className={"radius"}
                 type={"text"}
                 value={"delay"}
