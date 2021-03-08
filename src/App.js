@@ -1,43 +1,34 @@
-import React from 'react';
+import React, { useState } from "react";
 import './App.css';
 import Timer from "./components/Timer";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isShowing: false,
-      delay: ''
-    }
-  }
+function App(props) {
+    const [isShowing, setIsShowing] = useState(false);
+    const [delay, setDelay] = useState("");
 
-  render() {
-    const { isShowing, delay } = this.state;
-    return (
-      <div className="wrapper">
-        <div>
-            <h1>Лабораторная №1. Функциональные компоненты.</h1>
+    return(
+        <div className={"wrapper"}>
+            <div>
+                <h1>Лабораторная №1. Функциональные компоненты</h1>
+                <input className={"radius"}
+                type={"text"}
+                value={"delay"}
+                onChange={(e) => setDelay(e.target.value)}/>
+            </div>
+            <div>
+                <h3>Запуск таймера</h3>
+                <input id={"_checkbox"}
+                value={isShowing}
+                type={"checkbox"}
+                onChange={(e) => setDelay(e.target.value)}/>
+                <label htmlFor={"_checkbox"}>
+                    <div id={"tick_mark"}>
+                    </div>
+                </label>
+            </div>
+            <div>{isShowing && <Timer delay={delay}/>}</div>
         </div>
-        <div>
-          Введите количество секунд:
-          <input
-              type="text"
-              value={delay}
-              onChange={e => this.setState({ delay: e.target.value })} />
-        </div>
-        <div>
-          Показать таймер:
-          <input
-              type="checkbox"
-              value={isShowing}
-              onChange={e => this.setState({ isShowing: e.target.checked })} />
-        </div>
-        <div>
-          {isShowing && <Timer delay={delay} />}
-        </div>
-      </div>
     );
-  }
 }
 
 export default App;
