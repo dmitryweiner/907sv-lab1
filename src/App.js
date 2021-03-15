@@ -2,12 +2,11 @@ import React, {useState} from 'react';
 import './App.css';
 import Timer from "./components/Timer";
 
-function App(props) {
+function App() {
     const [delay, setDelay] = useState('');
     const [isShowing, setIsShowing] = useState(false);
-}
 
-return (
+    return (
     <div className="wrapper">
        <div>
            <h1>Лабораторная №1. Функциональные компоненты.</h1>
@@ -30,7 +29,7 @@ return (
          {isShowing && <Timer delay={delay} />}
        </div>
     </div>
-);
+);}
 
 
 export default App;
