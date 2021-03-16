@@ -1,43 +1,27 @@
 import React from 'react';
-import './App.css';
-import Timer from "./components/Timer";
+import './traffic-light.css';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isShowing: false,
-      delay: ''
+function App() {
+    const [count, setCount] = React.useState(10);
+    const fin = 'finish';
+
+    React.useEffect(() => {
+        setInterval(() => {
+            setCount((count1) => {
+                return count1 > 0 ? count1 - 1 : false
+            })
+        }, 300)
+    }, []);
+    console.log(count);
+    if( count <= 0 ){
+        return <>
+            { fin }
+        </>;
+    } else {
+        return <>
+            { count }
+        </>;
     }
-  }
-
-  render() {
-    const { isShowing, delay } = this.state;
-    return (
-      <div className="wrapper">
-        <div>
-            <h1>Лабораторная №1. Функциональные компоненты.</h1>
-        </div>
-        <div>
-          Введите количество секунд:
-          <input
-              type="text"
-              value={delay}
-              onChange={e => this.setState({ delay: e.target.value })} />
-        </div>
-        <div>
-          Показать таймер:
-          <input
-              type="checkbox"
-              value={isShowing}
-              onChange={e => this.setState({ isShowing: e.target.checked })} />
-        </div>
-        <div>
-          {isShowing && <Timer delay={delay} />}
-        </div>
-      </div>
-    );
-  }
 }
 
 export default App;
